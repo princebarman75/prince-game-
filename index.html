@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prince | Interactive Developer Portfolio</title>
+<meta name="description" content="Prince - Developer, Dreamer and Learner">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@600;700&family=Rubik+Glitch&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+:root{
+--bg:#080d24;
+--panel:#111b3a;
+--primary:#8b35ff;
+--secondary:#00d5ff;
+--text:#f5f6ff;
+--muted:#aab5d0;
+--border:rgba(130,160,255,.22);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+background:var(--bg);color:var(--text);
+font-family:Inter,sans-serif;
+transition:.3s;overflow-x:hidden
+}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+header{
+position:sticky;top:0;z-index:100;
+background:#080d24ee;
+backdrop-filter:blur(15px);
+border-bottom:1px solid var(--border)
+}
+.nav{
+max-width:1300px;margin:auto;padding:15px 4%;
+display:flex;align-items:center;justify-content:space-between;
+gap:15px
+}
+.logo{font-size:25px;font-weight:800}
+.logo i{color:#ffc928}
+nav{display:flex;gap:20px}
+nav a{color:var(--muted);font-size:14px}
+nav a:hover{color:var(--secondary)}
+.btn{
+border:0;padding:12px 20px;border-radius:30px;
+color:white;background:linear-gradient(110deg,var(--primary),#4422dd);
+font-weight:700;transition:.25s
+}
+.btn:hover{transform:translateY(-3px)}
+.outline{
+border:1px solid var(--primary);
+background:transparent;color:var(--text);
+padding:11px 18px;border-radius:30px
+}
+.container{max-width:1300px;margin:auto;padding:30px 4%}
+.hero{
+display:grid;grid-template-columns:1.2fr 1fr;
+align-items:center;gap:30px;min-height:420px
+}
+.tag{
+display:inline-block;background:var(--panel);
+padding:10px 16px;border-radius:30px;
+color:var(--secondary);margin-bottom:20px
+}
+h1{font-size:clamp(40px,6vw,70px)}
+.gradient{
+background:linear-gradient(100deg,var(--primary),var(--secondary));
+-webkit-background-clip:text;color:transparent
+}
+.hero h2{font-size:24px;margin:15px 0}
+p{line-height:1.8}
+.hero p,.panel p,.project p{color:var(--muted)}
+.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:25px}
+.profile{display:flex;justify-content:center;position:relative}
+.avatar{
+width:270px;height:270px;border-radius:50%;
+display:grid;place-items:center;font-size:110px;
+background:radial-gradient(circle,var(--primary),#101a35 70%);
+border:5px solid var(--secondary);
+box-shadow:0 0 45px var(--primary)
+}
+.bubble{
+position:absolute;padding:13px 17px;border-radius:16px;
+background:var(--primary);font-weight:bold;
+animation:float 4s infinite ease-in-out
+}
+.b1{top:20px;right:0}
+.b2{bottom:20px;left:0;background:#128b5b}
+@keyframes float{50%{transform:translateY(-12px)}}
+.stats{
+display:grid;grid-template-columns:repeat(3,1fr);
+gap:15px;margin:20px 0
+}
+.stat,.panel,.project,.thought{
+background:var(--panel);border:1px solid var(--border);
+border-radius:18px;padding:22px
+}
+.stat{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.stat i{font-size:30px;color:var(--secondary)}
+.stat strong{display:block;font-size:26px}
+.stat small{color:var(--muted)}
+.section-title{font-size:25px;margin-bottom:18px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.skills{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.skill{
+background:var(--bg);border:1px solid var(--border);
+padding:12px 16px;border-radius:12px
+}
+.skill i{color:var(--secondary);margin-right:6px}
+.projects{
+display:grid;grid-template-columns:repeat(3,1fr);gap:16px
+}
+.project{transition:.3s}
+.project:hover{transform:translateY(-5px);border-color:var(--secondary)}
+.project-icon{
+height:120px;border-radius:12px;
+background:linear-gradient(130deg,var(--primary),var(--secondary));
+display:grid;place-items:center;font-size:50px;margin-bottom:15px
+}
+.project p{margin:10px 0}
+.project a{color:var(--secondary)}
+.theme-grid{
+display:grid;grid-template-columns:repeat(4,1fr);gap:12px
+}
+.theme-option{
+border:2px solid var(--border);padding:13px 7px;
+border-radius:12px;background:var(--bg);color:var(--text)
+}
+.theme-option.active,.theme-option:hover{border-color:var(--secondary)}
+.theme-color{height:30px;border-radius:8px;margin-bottom:8px}
+.colors{display:flex;gap:20px;margin-top:20px;flex-wrap:wrap}
+.colors label{font-size:13px;color:var(--muted)}
+.colors input{display:block;margin-top:5px;width:55px;height:35px}
+.thoughts-list{display:grid;gap:12px;margin:20px 0}
+.thought{padding:15px}
+.thought small{color:var(--muted)}
+.thought p{margin-top:7px;overflow-wrap:anywhere}
+.message-form{display:flex;gap:10px;flex-wrap:wrap}
+.message-form input{
+flex:1;min-width:150px;padding:14px;
+border-radius:12px;border:1px solid var(--border);
+background:var(--bg);color:var(--text)
+}
+.status{color:var(--secondary);font-size:13px;margin-top:10px}
+.social{display:flex;justify-content:center;gap:22px;margin:20px}
+.social a{font-size:25px;color:var(--secondary)}
+footer{
+text-align:center;padding:25px;
+border-top:1px solid var(--border);
+color:var(--muted);margin-top:40px
+}
+#toast{
+position:fixed;bottom:20px;right:20px;
+background:var(--panel);border:1px solid var(--secondary);
+padding:15px 20px;border-radius:12px;
+display:none;z-index:500
+}
+@media(max-width:850px){
+nav{display:none}
+.hero{grid-template-columns:1fr;text-align:center}
+.hero p{margin:auto}
+.hero-buttons{justify-content:center}
+.profile{grid-row:1}
+.two{grid-template-columns:1fr}
+.projects{grid-template-columns:1fr 1fr}
+}
+@media(max-width:550px){
+.stats{grid-template-columns:1fr}
+.projects{grid-template-columns:1fr}
+.theme-grid{grid-template-columns:repeat(2,1fr)}
+.avatar{width:210px;height:210px;font-size:80px}
+.container{padding:22px 4%}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="nav">
+<a class="logo" href="#home"><i class="fa-solid fa-crown"></i> Prince</a>
+<nav>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#projects">Projects</a>
+<a href="#thoughts">Thoughts</a>
+<a href="#contact">Contact</a>
+</nav>
+<button class="btn" onclick="goThemes()">🎨 Themes</button>
+</div>
+</header>
+
+<main class="container">
+
+<section class="hero" id="home">
+<div class="hero-content">
+<div class="tag">🚀 Welcome to My Portfolio</div>
+<h1>Hi, I'm <span class="gradient">Prince</span></h1>
+<h2>Developer & AI Enthusiast</h2>
+<p>
+I love building modern websites, learning programming,
+exploring Artificial Intelligence and creating innovative
+solutions for a better tomorrow.
+</p>
+<div class="hero-buttons">
+<a class="btn" href="#projects">View My Projects →</a>
+<a class="outline" href="#contact">✉ Contact Me</a>
+</div>
+</div>
+
+<div class="profile">
+<div class="avatar"><i class="fa-solid fa-user-astronaut"></i></div>
+<div class="bubble b1">Dream Big! 💪</div>
+<div class="bubble b2">Keep Coding! 🚀</div>
+</div>
+</section>
+
+<section class="stats">
+<div class="stat">
+<i class="fa-solid fa-eye"></i>
+<div><small>Total Views</small><strong id="views">0</strong></div>
+</div>
+<div class="stat">
+<i class="fa-solid fa-heart" style="color:#ff4081"></i>
+<div><small>Total Likes</small><strong id="likes">0</strong></div>
+<button class="btn" onclick="likePortfolio()">❤️ Like</button>
+</div>
+<div class="stat">
+<i class="fa-solid fa-code"></i>
+<div><small>My Projects</small><strong>06+</strong></div>
+</div>
+</section>
+
+<section class="two" id="about">
+<div class="panel">
+<h2 class="section-title">👨‍💻 About Me</h2>
+<p>
+Hello! I'm Prince, a passionate learner and developer.
+I enjoy coding, designing websites and exploring AI technology.
+My goal is to create useful projects and improve every day.
+</p>
+<br>
+<a href="#contact" class="btn">Let's Connect →</a>
+</div>
+
+<div class="panel" id="skills">
+<h2 class="section-title">🚀 My Skills</h2>
+<div class="skills">
+<div class="skill"><i class="fa-brands fa-html5"></i>HTML</div>
+<div class="skill"><i class="fa-brands fa-css3-alt"></i>CSS</div>
+<div class="skill"><i class="fa-brands fa-js"></i>JavaScript</div>
+<div class="skill"><i class="fa-brands fa-python"></i>Python</div>
+<div class="skill"><i class="fa-solid fa-fire"></i>Firebase</div>
+<div class="skill"><i class="fa-brands fa-github"></i>GitHub</div>
+<div class="skill"><i class="fa-solid fa-database"></i>Database</div>
+</div>
+</div>
+</section>
+
+<section id="projects" style="margin-top:35px">
+<h2 class="section-title">🧩 Featured Projects</h2>
+<div class="projects">
+
+<div class="project">
+<div class="project-icon">🛒</div>
+<h3>Gram Bazaar</h3>
+<p>Online shopping and regional handicraft marketplace.</p>
+<a href="#">View Project ↗</a>
+</div>
+
+<div class="project">
+<div class="project-icon">🤖</div>
+<h3>AI Voice Tutor</h3>
+<p>Intelligent learning assistant using AI technology.</p>
+<a href="#">View Project ↗</a>
+</div>
+
+<div class="project">
+<div class="project-icon">🌱</div>
+<h3>HARIT</h3>
+<p>Plant disease detection using machine learning.</p>
+<a href="#">View Project ↗</a>
+</div>
+
+<div class="project">
+<div class="project-icon">🎮</div>
+<h3>3D Game</h3>
+<p>An interactive 3D gaming experience.</p>
+<a href="#">View Project ↗</a>
+</div>
+
+<div class="project">
+<div class="project-icon">📈</div>
+<h3>Price Prediction</h3>
+<p>Machine learning based prediction application.</p>
+<a href="#">View Project ↗</a>
+</div>
+
+<div class="project">
+<div class="project-icon">💬</div>
+<h3>AI Chatbot</h3>
+<p>A conversational AI assistant.</p>
+<a href="#">View Project ↗</a>
+</div>
+
+</div>
+</section>
+
+<section class="panel" id="themes" style="margin-top:35px">
+<h2 class="section-title">🎨 Choose Your Theme</h2>
+<div class="theme-grid" id="themeGrid"></div>
+
+<div class="colors">
+<label>Primary Color
+<input type="color" id="primaryPicker" value="#8b35ff">
+</label>
+<label>Secondary Color
+<input type="color" id="secondaryPicker" value="#00d5ff">
+</label>
+</div>
+<br>
+<button class="btn" onclick="saveTheme()">☁️ Save Theme to Cloud</button>
+<button class="outline" onclick="resetTheme()">Reset</button>
+<p class="status" id="themeStatus"></p>
+</section>
+
+<section class="panel" id="thoughts" style="margin-top:35px">
+<h2 class="section-title">💬 Wall of Thoughts <span style="color:#22dd88;font-size:14px">● Live</span></h2>
+<p>Leave a positive message for visitors!</p>
+
+<div class="thoughts-list" id="thoughtsList">
+<p class="status">Connecting...</p>
+</div>
+
+<form class="message-form" id="messageForm">
+<input id="visitorName" maxlength="35" placeholder="Your name" required>
+<input id="visitorMessage" maxlength="250" placeholder="Write your thoughts..." required>
+<button class="btn" type="submit">➤ Post</button>
+</form>
+<p class="status" id="messageStatus"></p>
+</section>
+
+<section class="panel" id="contact" style="margin-top:35px;text-align:center">
+<h2 class="section-title">📩 Contact Me</h2>
+<p>Let's work together! Feel free to connect with me.</p>
+<div class="social">
+<a href="https://github.com/" target="_blank"><i class="fa-brands fa-github"></i></a>
+<a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+<a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+</div>
+<a class="btn" href="mailto:prince@example.com">Say Hello ✉</a>
+</section>
+
+</main>
+
+<footer>
+<h3>👑 Prince</h3>
+<p>© <span id="year"></span> Prince | Built with ❤️</p>
+<p>Dream • Learn • Build • Innovate</p>
+</footer>
+
+<div id="toast"></div>
+
+<script>
+const themes=[
+{name:"Modern",p:"#8b35ff",s:"#00d5ff",bg:"#080d24",panel:"#111b3a"},
+{name:"Coder",p:"#00d878",s:"#a3ff00",bg:"#06120b",panel:"#10251a"},
+{name:"Manga",p:"#ff477e",s:"#ffd166",bg:"#211322",panel:"#38213b"},
+{name:"Cybertron",p:"#ff3d00",s:"#00eaff",bg:"#100b20",panel:"#241632"},
+{name:"Ocean",p:"#168cff",s:"#42e8d5",bg:"#06182b",panel:"#102e48"},
+{name:"Sunset",p:"#ff7b35",s:"#ffd166",bg:"#25121a",panel:"#3c2027"},
+{name:"Royal",p:"#b78aff",s:"#f5d36c",bg:"#160e2c",panel:"#271c48"},
+{name:"Forest",p:"#2fbd75",s:"#c3e88d",bg:"#0c1b15",panel:"#183427"}
+];
+
+let currentTheme=themes[0];
+
+const $=id=>document.getElementById(id);
+
+function toast(msg){
+$("toast").textContent=msg;
+$("toast").style.display="block";
+setTimeout(()=>$("toast").style.display="none",3000);
+}
+
+function applyTheme(t){
+currentTheme={...t};
+let r=document.documentElement;
+r.style.setProperty("--primary",t.p);
+r.style.setProperty("--secondary",t.s);
+r.style.setProperty("--bg",t.bg);
+r.style.setProperty("--panel",t.panel);
+
+$("primaryPicker").value=t.p;
+$("secondaryPicker").value=t.s;
+
+document.querySelectorAll(".theme-option").forEach(b=>{
+b.classList.toggle("active",b.dataset.name===t.name);
+});
+
+localStorage.setItem("princeTheme",JSON.stringify(t));
+}
+
+function buildThemes(){
+themes.forEach(t=>{
+let b=document.createElement("button");
+b.className="theme-option";
+b.dataset.name=t.name;
+
+let color=document.createElement("div");
+color.className="theme-color";
+color.style.background=`linear-gradient(90deg,${t.p},${t.s})`;
+
+b.append(color,document.createTextNode(t.name));
+b.onclick=()=>applyTheme(t);
+
+$("themeGrid").appendChild(b);
+});
+}
+
+function goThemes(){
+$("themes").scrollIntoView({behavior:"smooth"});
+}
+
+function resetTheme(){
+applyTheme(themes[0]);
+}
+
+$("primaryPicker").oninput=e=>{
+applyTheme({...currentTheme,p:e.target.value});
+};
+
+$("secondaryPicker").oninput=e=>{
+applyTheme({...currentTheme,s:e.target.value});
+};
+
+$("year").textContent=new Date().getFullYear();
+
+buildThemes();
+
+try{
+let saved=JSON.parse(localStorage.getItem("princeTheme"));
+applyTheme(saved||themes[0]);
+}catch(e){applyTheme(themes[0]);}
+
+window.princeCurrentTheme=()=>currentTheme;
+</script>
+
+<!-- FIREBASE MODULE -->
+<script type="module">
+
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+
+import {
+getAuth,signInAnonymously
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+import {
+getFirestore,doc,getDoc,setDoc,runTransaction,
+collection,addDoc,onSnapshot,query,orderBy,limit,serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+/* YOUR FIREBASE CONFIG */
+const firebaseConfig={
+apiKey:"YOUR_API_KEY",
+authDomain:"YOUR_PROJECT.firebaseapp.com",
+projectId:"YOUR_PROJECT_ID",
+storageBucket:"YOUR_PROJECT.firebasestorage.app",
+messagingSenderId:"YOUR_SENDER_ID",
+appId:"YOUR_APP_ID"
+};
+
+const configured=
+firebaseConfig.apiKey!=="YOUR_API_KEY" &&
+firebaseConfig.projectId!=="YOUR_PROJECT_ID";
+
+const msg=(id,text)=>{
+document.getElementById(id).textContent=text;
+};
+
+if(!configured){
+
+msg("themeStatus","Firebase configure karein. Theme browser mein save ho rahi hai.");
+msg("messageStatus","Firebase setup ke baad messages live honge.");
+document.getElementById("views").textContent="--";
+document.getElementById("likes").textContent="--";
+
+}else{
+
+try{
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+
+await signInAnonymously(auth);
+
+msg("messageStatus","Firebase connected! Loading messages...");
+msg("themeStatus","Firebase connected! Cloud ready.");
+
+/* GLOBAL VIEWS */
+const viewsRef=doc(db,"stats","global_views");
+
+await runTransaction(db,async tx=>{
+const snap=await tx.get(viewsRef);
+let count=snap.exists()?Number(snap.data().count)||0:0;
+tx.set(viewsRef,{count:count+1});
+});
+
+onSnapshot(viewsRef,snap=>{
+document.getElementById("views").textContent=
+snap.exists()?(snap.data().count||0).toLocaleString():"0";
+});
+
+/* GLOBAL LIKES */
+const likesRef=doc(db,"stats","likes");
+
+onSnapshot(likesRef,snap=>{
+document.getElementById("likes").textContent=
+snap.exists()?(snap.data().count||0).toLocaleString():"0";
+});
+
+/* LIKE FUNCTION */
+window.princeLike=async()=>{
+await runTransaction(db,async tx=>{
+const snap=await tx.get(likesRef);
+let count=snap.exists()?Number(snap.data().count)||0:0;
+tx.set(likesRef,{count:count+1});
+});
+};
+
+/* SAVE THEME */
+window.princeSaveTheme=async()=>{
+const t=window.princeCurrentTheme();
+
+await setDoc(doc(db,"website_state","global_theme"),{
+name:t.name,
+p:t.p,
+s:t.s,
+bg:t.bg,
+panel:t.panel,
+updatedAt:serverTimestamp()
+});
+
+};
+
+/* LOAD SAVED THEME */
+const themeRef=doc(db,"website_state","global_theme");
+
+const themeSnap=await getDoc(themeRef);
+
+if(themeSnap.exists()){
+const t=themeSnap.data();
+if(t.p&&t.s&&t.bg&&t.panel){
+const theme={
+name:t.name||"Custom",
+p:t.p,s:t.s,bg:t.bg,panel:t.panel
+};
+window.princeApplyTheme(theme);
+}
+}
+
+/* POST MESSAGE */
+window.princePostMessage=async(name,text)=>{
+await addDoc(collection(db,"messages"),{
+name:name,
+text:text,
+uid:auth.currentUser.uid,
+createdAt:serverTimestamp()
+});
+};
+
+/* REAL TIME WALL */
+const messagesQuery=query(
+collection(db,"messages"),
+orderBy("createdAt","desc"),
+limit(30)
+);
+
+onSnapshot(messagesQuery,snapshot=>{
+
+const list=document.getElementById("thoughtsList");
+list.replaceChildren();
+
+if(snapshot.empty){
+list.textContent="Be the first to leave a thought!";
+return;
+}
+
+snapshot.forEach(item=>{
+
+const data=item.data();
+const card=document.createElement("div");
+card.className="thought";
+
+const title=document.createElement("strong");
+title.textContent=data.name||"Visitor";
+
+const date=document.createElement("small");
+date.textContent=" • "+(
+data.createdAt?.toDate().toLocaleString()||"Just now"
+);
+
+const p=document.createElement("p");
+p.textContent=data.text||"";
+
+card.append(title,date,p);
+list.appendChild(card);
+
+});
+
+},error=>{
+console.error(error);
+msg("messageStatus","Could not load messages: "+error.message);
+});
+
+msg("messageStatus","Live Wall connected! You can post.");
+}catch(error){
+console.error("Firebase Error:",error);
+msg("messageStatus","Firebase Error: "+error.message);
+msg("themeStatus","Please check Firebase configuration.");
+}
+}
+
+</script>
+
+<script>
+window.princeApplyTheme=window.princeApplyTheme||function(t){
+if(t.p){
+document.documentElement.style.setProperty("--primary",t.p);
+document.documentElement.style.setProperty("--secondary",t.s);
+document.documentElement.style.setProperty("--bg",t.bg);
+document.documentElement.style.setProperty("--panel",t.panel);
+}
+};
+
+function likePortfolio(){
+if(!window.princeLike){
+toast("Firebase setup required!");
+return;
+}
+window.princeLike()
+.then(()=>toast("Thanks for your ❤️!"))
+.catch(e=>toast(e.message));
+}
+
+function saveTheme(){
+if(!window.princeSaveTheme){
+toast("Firebase setup required!");
+return;
+}
+window.princeSaveTheme()
+.then(()=>toast("Theme saved to cloud!"))
+.catch(e=>toast(e.message));
+}
+
+document.getElementById("messageForm").addEventListener("submit",async e=>{
+e.preventDefault();
+
+let name=document.getElementById("visitorName").value.trim();
+let text=document.getElementById("visitorMessage").value.trim();
+
+if(!name||!text)return;
+
+if(!window.princePostMessage){
+toast("Firebase setup required!");
+return;
+}
+
+try{
+await window.princePostMessage(name,text);
+document.getElementById("visitorMessage").value="";
+toast("Message posted successfully!");
+}catch(error){
+toast(error.message);
+}
+});
+</script>
+
+<!-- GSAP ANIMATIONS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+if(window.gsap){
+gsap.from(".hero-content",{opacity:0,y:30,duration:1});
+gsap.from(".profile",{opacity:0,scale:.8,duration:1});
+gsap.from(".stat",{opacity:0,y:20,stagger:.2,duration:.8});
+gsap.from(".project",{opacity:0,y:20,stagger:.1,duration:.7,
+scrollTrigger:false});
+}
+</script>
+
+</body>
+</html>
